@@ -48,22 +48,26 @@
         transform: scale(0.8) rotate(-10deg);
       }
     }
-
-    .seizure-notice {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      color: black;
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-align: center;
-      padding: 2rem;
-      z-index: 100000;
-    }
+  
+  .seizure-notice {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    z-index: 100000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 2rem;
+    display: flex;
+  }
 
     .seizure-notice img {
       max-width: 150px;
