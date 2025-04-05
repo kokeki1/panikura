@@ -5,12 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Panikura Wiki – Slang Dictionary</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .schizo {
+      position: absolute;
+      transition: all 0.2s ease;
+      z-index: 9999;
+    }
+    .schizo-mode button {
+      background: red;
+      color: white;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="container">
       <h1>Panikura Wiki</h1>
       <p class="subtitle">A documentation project for the Panikura Group</p>
+      <button id="schizoBtn">Schizo Mode</button>
     </div>
     <nav>
       <div class="container">
@@ -34,14 +46,14 @@
       <script id="slang-entries" type="application/json">
         [
           {
-          "term": "Digiboksi",
-          "definition": "A set-top box.",
-          "example": "What the hell is a digiboksi?"
+            "term": "Digiboksi",
+            "definition": "A set-top box.",
+            "example": "What the hell is a digiboksi?"
           },
           {
-          "term": "Verkkokauppa",
-          "definition": "A Finnish online store.",
-          "example": "Verkkokauppa"
+            "term": "Verkkokauppa",
+            "definition": "A Finnish online store.",
+            "example": "Verkkokauppa"
           },
           {
             "term": "Suur-Saitama",
@@ -112,6 +124,26 @@
       dd.innerHTML = `<p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>`;
       list.appendChild(dt);
       list.appendChild(dd);
+    });
+
+    // Schizo Mode Script
+    document.getElementById("schizoBtn").addEventListener("click", () => {
+      document.body.classList.add("schizo-mode");
+      setInterval(() => {
+        const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
+        const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
+        allElements.forEach(el => {
+          if (Math.random() < 0.1) {
+            el.textContent = randomText[Math.floor(Math.random() * randomText.length)];
+          }
+          if (Math.random() < 0.05) {
+            el.style.position = "absolute";
+            el.style.left = Math.random() * window.innerWidth + "px";
+            el.style.top = Math.random() * window.innerHeight + "px";
+            el.classList.add("schizo");
+          }
+        });
+      }, 500);
     });
   </script>
 </body>
