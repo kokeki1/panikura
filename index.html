@@ -93,16 +93,17 @@
     }
 
 #schizoBtn {
-  position: fixed; /* Keep it in the normal flow */
-  margin-top: 50px; /* Optional: space above the button */
+  position: fixed;
+  margin-top: 50px;
   padding: 15px 30px;
   background-color: red;
   color: white;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  width: 100%; /* Or change width if you want a smaller button */
+  width: 100%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 100000; /* Set a high z-index value to make sure it's on top */
 }
     
   </style>
