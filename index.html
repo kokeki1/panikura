@@ -6,56 +6,71 @@
   <title>Panikura Wiki – Slang Dictionary</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
+    body.schizo-mode {
+      animation: flicker 0.15s infinite;
     }
 
-    header {
-      background-color: #333;
+    @keyframes flicker {
+      0%   { opacity: 1; }
+      5%   { opacity: 0.8; }
+      10%  { opacity: 1; }
+      15%  { opacity: 0.9; }
+      20%  { opacity: 1; }
+      25%  { opacity: 0.85; }
+      30%  { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
+    .floating-paranoia {
+      position: fixed;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: red;
+      background: black;
+      padding: 0.5rem 1rem;
+      border: 2px solid red;
+      animation: paranoia-fade 5s ease-in-out;
+      z-index: 99999;
+      pointer-events: none;
+    }
+
+    @keyframes paranoia-fade {
+      0% {
+        opacity: 0;
+        transform: scale(0.9) rotate(-5deg);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg);
+      }
+    }
+
+    .glitch {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 2rem;
+      font-weight: bold;
       color: white;
-      padding: 1rem;
-      text-align: center;
+      text-transform: uppercase;
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 0;
+      animation: glitch-animation 1s infinite;
     }
 
-    nav {
-      background-color: #444;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+    @keyframes glitch-animation {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      20% { transform: translate(-60%, -55%) scale(1.1); opacity: 0.5; }
+      40% { transform: translate(60%, -45%) scale(0.9); opacity: 0.7; }
+      60% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      80% { transform: translate(55%, -50%) scale(1.05); opacity: 0.5; }
     }
 
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    nav ul li {
-      display: inline;
-      margin: 0 15px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
-
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #333;
-      color: white;
-    }
-
-    /* Seizure Notice */
     .seizure-notice {
       display: none;
       position: fixed;
@@ -63,26 +78,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: black;
-      color: white;
+      background: black url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/US-CentralIntelligenceAgency-Seal.svg/800px-US-CentralIntelligenceAgency-Seal.svg.png') no-repeat center center;
+      background-size: 40%;
+      color: red;
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
-      padding: 5rem 2rem;
+      padding: 4rem;
       z-index: 100000;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      background-blend-mode: overlay;
     }
 
-    .seizure-notice h1 {
-      font-size: 4rem;
-      margin-bottom: 2rem;
-    }
-
-    .seizure-notice p {
-      margin: 1rem 0;
-    }
-
-    /* Schizo Button */
     #schizoBtn {
       background: red;
       color: white;
@@ -192,7 +198,6 @@
       <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
     </div>
   </footer>
-
   <button id="schizoBtn">Activate Schizo Mode</button>
 
   <script>
@@ -210,22 +215,66 @@
       list.appendChild(dd);
     });
 
-    // Schizo Mode
     document.getElementById("schizoBtn").addEventListener("click", () => {
-      // Simulate CIA seizure message
+      document.body.classList.add("schizo-mode");
+
+      const paranoiaPhrases = [
+        "THE FEDS ARE AFTER YOU",
+        "THEY ARE LISTENING",
+        "THEY WANT YOU TO THINK YOU'RE CRAZY",
+        "WAKE UP",
+        "YOU ARE NOT SAFE",
+        "TRUST NO ONE",
+        "MONARCH PROTOCOL ACTIVE",
+        "5G MIND CONTROL",
+        "IS THIS REALITY?",
+        "THEY'RE IN THE WALLS",
+        "WAKE UP, AGENT",
+        "JUSTO IS A LIE",
+        "PORTAL OPENS TONIGHT",
+        "YOU WILL NEVER REACH N1",
+        "ABE IS ALIVE"
+      ];
+
+      setInterval(() => {
+        const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
+        const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
+        allElements.forEach(el => {
+          if (Math.random() < 0.1) {
+            el.textContent = randomText[Math.floor(Math.random() * randomText.length)];
+          }
+          if (Math.random() < 0.05) {
+            el.style.position = "absolute";
+            el.style.left = Math.random() * window.innerWidth + "px";
+            el.style.top = Math.random() * window.innerHeight + "px";
+            el.classList.add("schizo");
+          }
+        });
+      }, 500);
+
+      setInterval(() => {
+        const msg = document.createElement("div");
+        msg.className = "floating-paranoia";
+        msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
+        msg.style.left = Math.random() * window.innerWidth + "px";
+        msg.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 5000);
+      }, 800);
+
       setTimeout(() => {
         const seizureNotice = document.createElement("div");
         seizureNotice.classList.add("seizure-notice");
         seizureNotice.innerHTML = `
-          <h1>THIS DOMAIN HAS BEEN SEIZED BY THE CIA</h1>
-          <p>Your internet activity is under investigation.</p>
-          <p>Do not attempt to leave this page.</p>
-          <p>Any attempt to access restricted content will be logged and monitored.</p>
-          <p>If you believe this is an error, please contact the appropriate authorities.</p>
+          <h1>THIS DOMAIN HAS BEEN SEIZED</h1>
+          <p>by the United States Central Intelligence Agency</p>
+          <p>under Executive Order 12333 and the Patriot Act</p>
+          <p>All activities are being monitored and recorded</p>
+          <p>You may close this page now</p>
         `;
         document.body.appendChild(seizureNotice);
         seizureNotice.style.display = 'block';
-      }, 5000);
+      }, 10000);
     });
   </script>
 </body>
