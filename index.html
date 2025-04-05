@@ -6,14 +6,57 @@
   <title>Panikura Wiki – Slang Dictionary</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .schizo {
-      position: absolute;
-      transition: all 0.2s ease;
-      z-index: 9999;
+    body.schizo-mode {
+      animation: flicker 0.15s infinite;
     }
-    .schizo-mode button {
+
+    @keyframes flicker {
+      0%   { opacity: 1; }
+      5%   { opacity: 0.8; }
+      10%  { opacity: 1; }
+      15%  { opacity: 0.9; }
+      20%  { opacity: 1; }
+      25%  { opacity: 0.85; }
+      30%  { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
+    .floating-paranoia {
+      position: fixed;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: red;
+      background: black;
+      padding: 0.5rem 1rem;
+      border: 2px solid red;
+      animation: paranoia-fade 5s ease-in-out;
+      z-index: 99999;
+      pointer-events: none;
+    }
+
+    @keyframes paranoia-fade {
+      0% {
+        opacity: 0;
+        transform: scale(0.9) rotate(-5deg);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg);
+      }
+    }
+
+    #schizoBtn {
       background: red;
       color: white;
+      font-weight: bold;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin: 1rem 0;
     }
   </style>
 </head>
@@ -22,7 +65,6 @@
     <div class="container">
       <h1>Panikura Wiki</h1>
       <p class="subtitle">A documentation project for the Panikura Group</p>
-      <button id="schizoBtn">Schizo Mode</button>
     </div>
     <nav>
       <div class="container">
@@ -40,6 +82,8 @@
     <article>
       <h2>Slang Dictionary</h2>
       <p>This page documents common slang, jargon, and terminology used within the Panikura group.</p>
+
+      <button id="schizoBtn">Schizo Mode</button>
 
       <dl id="slang-list"></dl>
 
@@ -126,9 +170,26 @@
       list.appendChild(dd);
     });
 
-    // Schizo Mode Script
+    // Schizo Mode
     document.getElementById("schizoBtn").addEventListener("click", () => {
       document.body.classList.add("schizo-mode");
+
+      const paranoiaPhrases = [
+        "THE FEDS ARE AFTER YOU",
+        "THEY ARE LISTENING",
+        "GANGSTALKING INTENSIFIES",
+        "WAKE UP",
+        "YOU ARE NOT SAFE",
+        "TRUST NO ONE",
+        "MONARCH PROTOCOL ACTIVE",
+        "5G MIND CONTROL",
+        "IS THIS REALITY?",
+        "THEY'RE IN THE WALLS",
+        "WAKE UP, AGENT",
+        "JUSTO IS A LIE",
+        "PORTAL OPENS TONIGHT"
+      ];
+
       setInterval(() => {
         const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
         const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
@@ -144,6 +205,16 @@
           }
         });
       }, 500);
+
+      setInterval(() => {
+        const msg = document.createElement("div");
+        msg.className = "floating-paranoia";
+        msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
+        msg.style.left = Math.random() * window.innerWidth + "px";
+        msg.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 5000);
+      }, 800);
     });
   </script>
 </body>
