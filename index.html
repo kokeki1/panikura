@@ -104,6 +104,11 @@
       padding: 0.5rem 1rem;
       cursor: pointer;
       margin: 1rem 0;
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10001;
     }
   </style>
 </head>
@@ -129,8 +134,6 @@
     <article>
       <h2>Slang Dictionary</h2>
       <p>This page documents common slang, jargon, and terminology used within the Panikura group.</p>
-
-      <button id="schizoBtn">Schizo Mode</button>
 
       <dl id="slang-list"></dl>
 
@@ -234,9 +237,7 @@
         "THEY'RE IN THE WALLS",
         "WAKE UP, AGENT",
         "JUSTO IS A LIE",
-        "PORTAL OPENS TONIGHT",
-        "YOU WILL NEVER REACH N1",
-        "ABE IS ALIVE"
+        "PORTAL OPENS TONIGHT"
       ];
 
       setInterval(() => {
@@ -276,7 +277,7 @@
         setTimeout(() => glitchText.remove(), 1000);
       }, 1500);
 
-      // Fake CIA Seizure Page
+      // Fake CIA Seizure Page (No redirect)
       setTimeout(() => {
         const seizureNotice = document.createElement("div");
         seizureNotice.classList.add("seizure-notice");
@@ -286,9 +287,6 @@
           <p>Stay calm. They are watching you.</p>
         `;
         document.body.appendChild(seizureNotice);
-        setTimeout(() => {
-          window.location.href = "https://www.cia.gov";
-        }, 5000);
       }, 10000);
     });
   </script>
