@@ -1,77 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quote-astic Collection</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Fun Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SlangWiki</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>Quote-astic Collection</h1>
+    <h1>📚 SlangWiki</h1>
     <nav>
       <ul>
-        <li><a href="#quotes">Quotes</a></li>
-        <li><a href="#submit">Submit a Quote</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#slang">Slang Dictionary</a></li>
+        <li><a href="#">More Coming Soon!</a></li>
       </ul>
     </nav>
-    <!-- Disco Mode Toggle -->
-    <button id="discoBtn">Turn on Disco Mode!</button>
   </header>
 
   <main>
-    <section id="quotes">
-      <h2>Our Favorite Quotes</h2>
-      <div class="quotes-container">
-        <blockquote>
-          <p>"Life is what happens when you're busy making other plans." - John Lennon</p>
-        </blockquote>
-        <blockquote>
-          <p>"I am so clever that sometimes I don't understand a single word of what I am saying." - Oscar Wilde</p>
-        </blockquote>
-        <blockquote>
-          <p>"I have not failed. I've just found 10,000 ways that won't work." - Thomas Edison</p>
-        </blockquote>
-        <blockquote>
-          <p>"If you think you are too small to be effective, you have never been in the dark with a mosquito." - Betty Reese</p>
-        </blockquote>
-      </div>
-    </section>
+    <section id="slang">
+      <h2>Slang Terms & Meanings</h2>
+      <p>Welcome to the slang section! Here’s where we decode the wildest words and weirdest phrases.</p>
+      <dl>
+        <dt><strong>drip</strong></dt>
+        <dd>Someone’s style or fashion game. "Yo, that jacket’s got mad drip."</dd>
 
-    <section id="submit">
-      <h2>Submit Your Quote</h2>
-      <p>Got an epic, hilarious, or downright quirky quote? Share it with the world:</p>
-      <form action="https://formspree.io/f/your-form-id" method="POST">
-        <label for="quote">Your Quote:</label>
-        <textarea id="quote" name="quote" placeholder="Type your awesome quote here..." required></textarea>
-        <label for="author">Author (optional):</label>
-        <input type="text" id="author" name="author" placeholder="Who said it?">
-        <button type="submit">Share the Wisdom</button>
-      </form>
-    </section>
+        <dt><strong>sus</strong></dt>
+        <dd>Short for suspicious. Popularized by Among Us. "He acting sus."</dd>
 
-    <section id="about">
-      <h2>About Quote-astic</h2>
-      <p>Welcome to Quote-astic Collection—a zany, whimsical website celebrating the power of words. From inspirational nuggets to the silliest zingers, our quotes will brighten your day and tickle your funny bone!</p>
+        <dt><strong>yeet</strong></dt>
+        <dd>To throw something with force and confidence. Can also be an exclamation. "YEET!"</dd>
+
+        <dt><strong>rizz</strong></dt>
+        <dd>Charisma, especially for flirting. "Dude's got no rizz."</dd>
+
+        <dt><strong>mid</strong></dt>
+        <dd>Something average or underwhelming. "That movie was mid."</dd>
+
+        <dt><strong>no cap</strong></dt>
+        <dd>“No lie” or “I’m serious.” "That song is fire, no cap."</dd>
+      </dl>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Quote-astic Collection. Let the quotes inspire you!</p>
+    <p>&copy; 2025 SlangWiki. Keeping you fluent in the goofy & great.</p>
   </footer>
-
-  <!-- Disco Mode Script -->
-  <script>
-    const discoBtn = document.getElementById('discoBtn');
-    discoBtn.addEventListener('click', () => {
-      document.body.classList.toggle('disco');
-      discoBtn.textContent = document.body.classList.contains('disco')
-        ? 'Turn off Disco Mode!'
-        : 'Turn on Disco Mode!';
-    });
-  </script>
 </body>
 </html>
