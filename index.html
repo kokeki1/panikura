@@ -49,7 +49,6 @@
       }
     }
 
-    /* Glitch Effect */
     .glitch {
       position: absolute;
       top: 50%;
@@ -72,7 +71,6 @@
       80% { transform: translate(55%, -50%) scale(1.05); opacity: 0.5; }
     }
 
-    /* Seizure Notice */
     .seizure-notice {
       display: none;
       position: fixed;
@@ -205,7 +203,7 @@
       <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
     </div>
   </footer>
-<button id="schizoBtn">Activate Schizo Mode</button>
+  <button id="schizoBtn">Activate Schizo Mode</button>
 
   <script>
     const slangData = JSON.parse(document.getElementById("slang-entries").textContent);
@@ -222,7 +220,6 @@
       list.appendChild(dd);
     });
 
-    // Schizo Mode
     document.getElementById("schizoBtn").addEventListener("click", () => {
       document.body.classList.add("schizo-mode");
 
@@ -270,18 +267,6 @@
         setTimeout(() => msg.remove(), 5000);
       }, 800);
 
-      // Glitch Effect
-      setInterval(() => {
-        const glitchText = document.createElement("div");
-        glitchText.classList.add("glitch");
-        glitchText.textContent = "WARNING: SYSTEM ERROR";
-        glitchText.style.left = Math.random() * window.innerWidth + "px";
-        glitchText.style.top = Math.random() * window.innerHeight + "px";
-        document.body.appendChild(glitchText);
-        setTimeout(() => glitchText.remove(), 1000);
-      }, 1500);
-
-      // Fake CIA Seizure Page (No redirect)
       setTimeout(() => {
         const seizureNotice = document.createElement("div");
         seizureNotice.classList.add("seizure-notice");
@@ -291,6 +276,7 @@
           <p>Stay calm. They are watching you.</p>
         `;
         document.body.appendChild(seizureNotice);
+        seizureNotice.style.display = 'block';  // Ensure it shows up
       }, 10000);
     });
   </script>
