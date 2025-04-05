@@ -31,17 +31,16 @@
 
       <dl id="slang-list"></dl>
 
-      <!-- Slang terms stored as JSON -->
       <script id="slang-entries" type="application/json">
         [
           {
             "term": "Suur-Saitama",
             "definition": "Saitama will be great again.",
-            "example": "I'm willing to die for Suur-Saitama"
+            "example": "I'm willing to die for Suur-Saitama."
           },
           {
             "term": "シコリティ",
-            "definition": "A slang term combining 'シコる' (shikoru, meaning to masturbate) and 'クオリティ' (kuoriti, meaning quality), referring to the quality of material that assists in arousal during masturbation.",
+            "definition": "A slang term that expresses how 'shikoi' (sexually arousing or fappable) something is — usually referring to a character, person, or illustration. It represents the degree of sexual appeal of a subject. A portmanteau of 'shiko(i)' (from the slang for masturbation, shikoshiko) and the English suffix -ity, used humorously online.",
             "example": "このアニメキャラのシコリティは高いね。"
           },
           {
@@ -56,12 +55,12 @@
           },
           {
             "term": "ポータルやろう",
-            "definition": "A phrase combining 'ポータル' (pōtaru, meaning portal) and 'やろう' (yarō, meaning guy or fellow), possibly referring to someone who frequently uses online portals or games.",
-            "example": "あいつはポータルやろうで、いつもネットゲームばかりしている。"
+            "definition": "A phrase combining 'ポータル' (pōtaru, meaning portal) and 'やろう' (yarō, meaning guy or to play), ",
+            "example": "ポータルやろう"
           },
           {
             "term": "お世話になっております",
-            "definition": "A formal greeting meaning 'Thank you for your continued support' or 'I appreciate your assistance,' commonly used in business settings.",
+            "definition": "A formal greeting meaning 'Thank you for your continued support' or 'I appreciate your assistance,' commonly used by panikura members",
             "example": "お世話になっております。先日の件についてご連絡いたします。"
           },
           {
@@ -71,17 +70,16 @@
           },
           {
             "term": "こいつジャスト？",
-            "definition": "A phrase questioning if something is 'just right' or appropriate, combining 'こいつ' (koitsu, meaning this guy or this thing) and 'ジャスト' (jasuto, meaning just or exactly).",
-            "example": "このサイズでこいつジャスト？"
+            "definition": "A phrase questioning if someone is JUSToing.",
+            "example": "こいつジャスト？"
           },
           {
             "term": "鎖国バリアー",
-            "definition": "A term combining '鎖国' (sakoku, meaning national isolation) and 'バリアー' (bariā, meaning barrier), metaphorically describing someone who is isolating themselves from others.",
-            "example": "彼は最近、鎖国バリアーを張っていて、全然連絡が取れない。"
+            "definition": "A quiz-style 'entry test' shown before entering certain Japanese-user-focused VRChat worlds (e.g., Fujiyama, Nagisa). Its purpose is to keep out users unfamiliar with Japanese language or culture — acting as a cultural filter to protect the space from outsiders (especially disruptive foreigners). The term plays on 'sakoku' (Japan’s historical isolation policy) and 'barrier', suggesting a closed-off cultural wall.",
+            "example": "I couldn't get into the world because of the 鎖国バリアー quiz at the entrance."
           }
         ]
       </script>
-
     </article>
   </main>
 
@@ -95,7 +93,7 @@
     const slangData = JSON.parse(document.getElementById("slang-entries").textContent);
     const list = document.getElementById("slang-list");
 
-    slangData.sort((a, b) => a.term.localeCompare(b.term, 'ja')); // Sort alphabetically (also handles Japanese)
+    slangData.sort((a, b) => a.term.localeCompare(b.term, 'ja'));
 
     slangData.forEach(item => {
       const dt = document.createElement("dt");
