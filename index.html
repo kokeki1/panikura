@@ -26,27 +26,26 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: red;
-      background: black;
-      padding: 0.5rem 1rem;
-      border: 2px solid red;
-      animation: paranoia-fade 5s ease-in-out;
+      background: transparent;
+      padding: 0.5rem;
+      border: none;
       z-index: 99999;
       pointer-events: none;
+      text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.6), 0px 0px 20px rgba(255, 0, 0, 0.6);
+      transform: rotate(0deg);
+      transition: transform 0.1s ease-in-out;
+      opacity: 0;
     }
 
-    @keyframes paranoia-fade {
-      0% {
-        opacity: 0;
-        transform: scale(0.9) rotate(-5deg);
-      }
-      20% {
-        opacity: 1;
-        transform: scale(1.1) rotate(5deg);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(0.8) rotate(-10deg);
-      }
+    .floating-paranoia.active {
+      opacity: 1;
+      animation: paranoia-flicker 0.2s linear infinite alternate;
+    }
+
+    @keyframes paranoia-flicker {
+      0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+      50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
+      100% { transform: scale(0.8) rotate(-10deg); opacity: 0.5; }
     }
 
     #schizoBtn {
@@ -177,7 +176,7 @@
       const paranoiaPhrases = [
         "THE FEDS ARE AFTER YOU",
         "THEY ARE LISTENING",
-        "GANGSTALKING INTENSIFIES",
+        "THEY WANT YOU TO THINK YOU'RE CRAZY",
         "WAKE UP",
         "YOU ARE NOT SAFE",
         "TRUST NO ONE",
@@ -208,7 +207,7 @@
 
       setInterval(() => {
         const msg = document.createElement("div");
-        msg.className = "floating-paranoia";
+        msg.className = "floating-paranoia active";
         msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
         msg.style.left = Math.random() * window.innerWidth + "px";
         msg.style.top = Math.random() * window.innerHeight + "px";
