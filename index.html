@@ -93,8 +93,11 @@
 
     #schizoBtn {
       position: absolute;
-      width: 8%;
-      padding: 10px 25px;
+      width: auto; /* Automatically adjusts to fit the content */
+      height: auto; /* Automatically adjusts to fit the content */
+      left: 50%; /* Horizontally centers the button */
+      min-width: 0; /* Ensures the button shrinks to fit text without extra space */      
+      padding: 5px 10px;
       background-color: red;
       color: white;
       border: none;
