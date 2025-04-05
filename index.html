@@ -27,18 +27,21 @@
   <main class="container">
     <article>
       <h2>Slang Dictionary</h2>
-      <p>This page documents common slang, jargon, and terminology used within the Panikura group. This section is intended to clarify inside jokes, shorthand, and frequently used expressions.</p>
+      <p>This page documents common slang, jargon, and terminology used within the Panikura group.</p>
 
-      <dl>
-        <dt><strong>Suur-Saitama</strong></dt>
-        <dd>Saitama will be great again.</em></dd>
+      <!-- This is where the formatted list will be inserted -->
+      <dl id="slang-list"></dl>
 
-        <dt><strong>Soyl</strong></dt>
-        <dd>An effeminate male.</em></dd> <br><em></em></dd>
-     
+      <!-- Add raw slang entries here -->
+      <script id="slang-entries" type="application/json">
+        [
+          {
+            "term": "Suur-Saitama",
+            "definition": "Saitama will be great again.",
+          },
+        ]
+      </script>
 
-        
-      </dl>
     </article>
   </main>
 
@@ -47,5 +50,7 @@
       <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
