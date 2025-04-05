@@ -49,28 +49,6 @@
       }
     }
 
-    .glitch {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-      text-transform: uppercase;
-      z-index: 99999;
-      pointer-events: none;
-      opacity: 0;
-      animation: glitch-animation 1s infinite;
-    }
-
-    @keyframes glitch-animation {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      20% { transform: translate(-60%, -55%) scale(1.1); opacity: 0.5; }
-      40% { transform: translate(60%, -45%) scale(0.9); opacity: 0.7; }
-      60% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      80% { transform: translate(55%, -50%) scale(1.05); opacity: 0.5; }
-    }
-
     .seizure-notice {
       display: none;
       position: fixed;
@@ -78,15 +56,18 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: black url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/US-CentralIntelligenceAgency-Seal.svg/800px-US-CentralIntelligenceAgency-Seal.svg.png') no-repeat center center;
-      background-size: 40%;
-      color: red;
-      font-size: 2rem;
+      background: white;
+      color: black;
+      font-size: 1.5rem;
       font-weight: bold;
       text-align: center;
-      padding: 4rem;
+      padding: 2rem;
       z-index: 100000;
-      background-blend-mode: overlay;
+    }
+
+    .seizure-notice img {
+      max-width: 150px;
+      margin-bottom: 2rem;
     }
 
     #schizoBtn {
@@ -150,32 +131,32 @@
           },
           {
             "term": "シコリティ",
-            "definition": "A slang term that expresses how 'shikoi' (sexually arousing or fappable) something is — usually referring to a character, person, or illustration. It represents the degree of sexual appeal of a subject. A portmanteau of 'shiko(i)' (from the slang for masturbation, shikoshiko) and the English suffix -ity, used humorously online.",
+            "definition": "A slang term that expresses how 'shikoi' (sexually arousing or fappable) something is...",
             "example": "このアニメキャラのシコリティは高いね。"
           },
           {
             "term": "ヨーグルト系男子",
-            "definition": "A term describing a man who is gentle, mild, and has a soothing presence, akin to the qualities of yogurt.",
+            "definition": "A man who is gentle and mild, akin to the qualities of yogurt.",
             "example": "彼はヨーグルト系男子で、誰とでも優しく接する。"
           },
           {
             "term": "ソーグッド",
-            "definition": "A Japanized version of the English phrase 'So good,' used to express that something is very good or excellent. Used by Koki in all situations.",
+            "definition": "Japanized 'So good', used to express excellence. Used by Koki in all situations.",
             "example": "このケーキ、ソーグッドだね！"
           },
           {
             "term": "ポータルやろう",
-            "definition": "A play on words combining 'ポータル' (pōtaru, meaning portal) and 'やろう' (yarō, meaning guy or to play). Can be used in any situation.",
+            "definition": "A pun on 'portal' and 'guy' or 'play'. Can be used in any situation.",
             "example": "ポータルやろう"
           },
           {
             "term": "お世話になっております",
-            "definition": "A formal greeting meaning 'Thank you for your continued support' or 'I appreciate your assistance,' commonly used by panikura members upon meeting.",
+            "definition": "A formal greeting meaning 'Thank you for your continued support'.",
             "example": "お世話になっております。先日の件についてご連絡いたします。"
           },
           {
             "term": "ふにゃ",
-            "definition": "An onomatopoeic expression indicating something soft, limp, or flabby. It can also represent a sound made when someone is surprised or confused.",
+            "definition": "An onomatopoeia for something soft, limp, or confused.",
             "example": "彼の握手はふにゃっとしていて力がない。"
           },
           {
@@ -185,7 +166,7 @@
           },
           {
             "term": "鎖国バリアー",
-            "definition": "A quiz-style 'entry test' shown before entering certain Japanese-user-focused VRChat worlds (e.g., Fujiyama, Nagisa). Its purpose is to keep out users unfamiliar with Japanese language or culture — acting as a cultural filter to protect the space from outsiders (especially disruptive foreigners). The term plays on 'sakoku' (Japan’s historical isolation policy) and 'barrier', suggesting a closed-off cultural wall.",
+            "definition": "A VRChat 'entry test' to keep out non-Japanese speakers.",
             "example": "I couldn't get into the world because of the 鎖国バリアー quiz at the entrance."
           }
         ]
@@ -198,6 +179,7 @@
       <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
     </div>
   </footer>
+
   <button id="schizoBtn">Activate Schizo Mode</button>
 
   <script>
@@ -205,7 +187,6 @@
     const list = document.getElementById("slang-list");
 
     slangData.sort((a, b) => a.term.localeCompare(b.term, 'ja'));
-
     slangData.forEach(item => {
       const dt = document.createElement("dt");
       dt.textContent = item.term;
@@ -215,28 +196,30 @@
       list.appendChild(dd);
     });
 
+    const paranoiaPhrases = [
+      "THE FEDS ARE AFTER YOU",
+      "THEY ARE LISTENING",
+      "THEY WANT YOU TO THINK YOU'RE CRAZY",
+      "WAKE UP",
+      "YOU ARE NOT SAFE",
+      "TRUST NO ONE",
+      "MONARCH PROTOCOL ACTIVE",
+      "5G MIND CONTROL",
+      "IS THIS REALITY?",
+      "THEY'RE IN THE WALLS",
+      "WAKE UP, AGENT",
+      "JUSTO IS A LIE",
+      "PORTAL OPENS TONIGHT",
+      "YOU WILL NEVER REACH N1",
+      "ABE IS ALIVE"
+    ];
+
+    let flickerInterval, paranoiaInterval, mutateInterval;
+
     document.getElementById("schizoBtn").addEventListener("click", () => {
       document.body.classList.add("schizo-mode");
 
-      const paranoiaPhrases = [
-        "THE FEDS ARE AFTER YOU",
-        "THEY ARE LISTENING",
-        "THEY WANT YOU TO THINK YOU'RE CRAZY",
-        "WAKE UP",
-        "YOU ARE NOT SAFE",
-        "TRUST NO ONE",
-        "MONARCH PROTOCOL ACTIVE",
-        "5G MIND CONTROL",
-        "IS THIS REALITY?",
-        "THEY'RE IN THE WALLS",
-        "WAKE UP, AGENT",
-        "JUSTO IS A LIE",
-        "PORTAL OPENS TONIGHT",
-        "YOU WILL NEVER REACH N1",
-        "ABE IS ALIVE"
-      ];
-
-      setInterval(() => {
+      flickerInterval = setInterval(() => {
         const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
         const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
         allElements.forEach(el => {
@@ -247,12 +230,11 @@
             el.style.position = "absolute";
             el.style.left = Math.random() * window.innerWidth + "px";
             el.style.top = Math.random() * window.innerHeight + "px";
-            el.classList.add("schizo");
           }
         });
       }, 500);
 
-      setInterval(() => {
+      paranoiaInterval = setInterval(() => {
         const msg = document.createElement("div");
         msg.className = "floating-paranoia";
         msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
@@ -263,14 +245,17 @@
       }, 800);
 
       setTimeout(() => {
+        clearInterval(flickerInterval);
+        clearInterval(paranoiaInterval);
+        document.body.classList.remove("schizo-mode");
+
         const seizureNotice = document.createElement("div");
         seizureNotice.classList.add("seizure-notice");
         seizureNotice.innerHTML = `
-          <h1>THIS DOMAIN HAS BEEN SEIZED</h1>
-          <p>by the United States Central Intelligence Agency</p>
-          <p>under Executive Order 12333 and the Patriot Act</p>
-          <p>All activities are being monitored and recorded</p>
-          <p>You may close this page now</p>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/US-CIA-Seal.svg/200px-US-CIA-Seal.svg.png" alt="CIA Seal" />
+          <h1>THIS PAGE HAS BEEN SEIZED</h1>
+          <p>by the Central Intelligence Agency</p>
+          <p>Investigation is underway. Your activity has been logged.</p>
         `;
         document.body.appendChild(seizureNotice);
         seizureNotice.style.display = 'block';
