@@ -26,26 +26,74 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: red;
-      background: transparent;
-      padding: 0.5rem;
-      border: none;
+      background: black;
+      padding: 0.5rem 1rem;
+      border: 2px solid red;
+      animation: paranoia-fade 5s ease-in-out;
       z-index: 99999;
       pointer-events: none;
-      text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.6), 0px 0px 20px rgba(255, 0, 0, 0.6);
-      transform: rotate(0deg);
-      transition: transform 0.1s ease-in-out;
+    }
+
+    @keyframes paranoia-fade {
+      0% {
+        opacity: 0;
+        transform: scale(0.9) rotate(-5deg);
+      }
+      20% {
+        opacity: 1;
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg);
+      }
+    }
+
+    /* Glitch Effect */
+    .glitch {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+      z-index: 99999;
+      pointer-events: none;
       opacity: 0;
+      animation: glitch-animation 1s infinite;
     }
 
-    .floating-paranoia.active {
-      opacity: 1;
-      animation: paranoia-flicker 0.2s linear infinite alternate;
+    @keyframes glitch-animation {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      20% { transform: translate(-60%, -55%) scale(1.1); opacity: 0.5; }
+      40% { transform: translate(60%, -45%) scale(0.9); opacity: 0.7; }
+      60% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      80% { transform: translate(55%, -50%) scale(1.05); opacity: 0.5; }
     }
 
-    @keyframes paranoia-flicker {
-      0% { transform: scale(1) rotate(0deg); opacity: 0.5; }
-      50% { transform: scale(1.2) rotate(10deg); opacity: 1; }
-      100% { transform: scale(0.8) rotate(-10deg); opacity: 0.5; }
+    /* Seizure Notice */
+    .seizure-notice {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: red;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 2rem;
+      z-index: 100000;
+      animation: seizure-flicker 0.1s infinite;
+    }
+
+    @keyframes seizure-flicker {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
     }
 
     #schizoBtn {
@@ -81,6 +129,8 @@
     <article>
       <h2>Slang Dictionary</h2>
       <p>This page documents common slang, jargon, and terminology used within the Panikura group.</p>
+
+      <button id="schizoBtn">Schizo Mode</button>
 
       <dl id="slang-list"></dl>
 
@@ -149,7 +199,6 @@
   <footer>
     <div class="container">
       <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
-      <button id="schizoBtn">Schizo Mode</button>
     </div>
   </footer>
 
@@ -185,8 +234,8 @@
         "THEY'RE IN THE WALLS",
         "WAKE UP, AGENT",
         "JUSTO IS A LIE",
-        "PORTAL OPENS TONIGHT"
-        "YOU WILL NEVER REACH N0"
+        "PORTAL OPENS TONIGHT",
+        "YOU WILL NEVER REACH N1",
         "ABE IS ALIVE"
       ];
 
@@ -208,13 +257,39 @@
 
       setInterval(() => {
         const msg = document.createElement("div");
-        msg.className = "floating-paranoia active";
+        msg.className = "floating-paranoia";
         msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
         msg.style.left = Math.random() * window.innerWidth + "px";
         msg.style.top = Math.random() * window.innerHeight + "px";
         document.body.appendChild(msg);
         setTimeout(() => msg.remove(), 5000);
       }, 800);
+
+      // Glitch Effect
+      setInterval(() => {
+        const glitchText = document.createElement("div");
+        glitchText.classList.add("glitch");
+        glitchText.textContent = "WARNING: SYSTEM ERROR";
+        glitchText.style.left = Math.random() * window.innerWidth + "px";
+        glitchText.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(glitchText);
+        setTimeout(() => glitchText.remove(), 1000);
+      }, 1500);
+
+      // Fake CIA Seizure Page
+      setTimeout(() => {
+        const seizureNotice = document.createElement("div");
+        seizureNotice.classList.add("seizure-notice");
+        seizureNotice.innerHTML = `
+          <h1>THIS DOMAIN HAS BEEN SEIZED BY THE CIA</h1>
+          <p>You are under investigation.</p>
+          <p>Stay calm. They are watching you.</p>
+        `;
+        document.body.appendChild(seizureNotice);
+        setTimeout(() => {
+          window.location.href = "https://www.cia.gov";
+        }, 5000);
+      }, 10000);
     });
   </script>
 </body>
