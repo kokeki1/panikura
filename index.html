@@ -209,6 +209,15 @@
   </footer>
 
   <script>
+ 
+    footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers content horizontally */
+  justify-content: center; /* Centers content vertically */
+  text-align: center; /* Centers the text */
+}
+    
     const slangData = JSON.parse(document.getElementById("slang-entries").textContent);
     const list = document.getElementById("slang-list");
 
