@@ -3,68 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Panikura Club</title>
+  <title>Panikura Club: The Wacky Wonderland</title>
   <link rel="stylesheet" href="style.css">
-  <!-- You can add a favicon or additional meta tags here -->
+  <!-- Importing a fun Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <h1>Panikura Club</h1>
     <nav>
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">What’s the Fuss?</a></li>
+        <li><a href="#gallery">Wacky Snaps</a></li>
+        <li><a href="#events">Silly Shindigs</a></li>
+        <li><a href="#contact">Holler at Us</a></li>
       </ul>
     </nav>
+    <!-- Disco Mode Toggle -->
+    <button id="discoBtn">Turn on Disco Mode!</button>
   </header>
 
   <main>
     <section id="about">
-      <h2>About Us</h2>
-      <p>Welcome to the Panikura Club! We are a group of photography enthusiasts who love capturing fun moments with our unique panikura booths. Join us to explore creativity, technology, and the art of instant photography.</p>
+      <h2>Welcome to the Panikura Party!</h2>
+      <p>Hey there, fun-seekers! The Panikura Club is all about snapping the silliest, most outrageous photos around. We mix art, tech, and a whole lot of giggles to create a wacky wonderland where every click is a laugh-out-loud moment. Ready to join the madness?</p>
     </section>
 
     <section id="gallery">
-      <h2>Gallery</h2>
+      <h2>Wacky Snaps Gallery</h2>
       <div class="gallery">
         <!-- Replace these with your actual images -->
-        <img src="https://via.placeholder.com/300x200?text=Photo+1" alt="Panikura Photo 1">
-        <img src="https://via.placeholder.com/300x200?text=Photo+2" alt="Panikura Photo 2">
-        <img src="https://via.placeholder.com/300x200?text=Photo+3" alt="Panikura Photo 3">
+        <img src="https://via.placeholder.com/300x200?text=Crazy+Click+1" alt="Panikura Photo 1">
+        <img src="https://via.placeholder.com/300x200?text=Wacky+Wonder+2" alt="Panikura Photo 2">
+        <img src="https://via.placeholder.com/300x200?text=Fun+Frenzy+3" alt="Panikura Photo 3">
       </div>
     </section>
 
     <section id="events">
-      <h2>Upcoming Events</h2>
+      <h2>Upcoming Silly Shindigs</h2>
       <ul>
-        <li><strong>Photo Walk</strong> - July 15, 2025</li>
-        <li><strong>Workshop</strong> - August 2, 2025</li>
-        <li><strong>Exhibition</strong> - September 10, 2025</li>
+        <li><strong>Bizarre Photo Walk</strong> - July 15, 2025 (Bring your odd socks!)</li>
+        <li><strong>Quirky Workshop</strong> - August 2, 2025 (Learn the art of goofy angles!)</li>
+        <li><strong>Ridiculous Exhibition</strong> - September 10, 2025 (Prepare to be amazed by the absurd!)</li>
       </ul>
     </section>
 
     <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Interested in joining or collaborating with us? Drop us a line!</p>
+      <h2>Holler at Us!</h2>
+      <p>Got a crazy idea or just wanna chat about photogenic nonsense? Drop us a note!</p>
       <form action="https://formspree.io/f/your-form-id" method="POST">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" placeholder="Your funny name" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="_replyto" required>
+        <input type="email" id="email" name="_replyto" placeholder="you@funmail.com" required>
 
         <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
+        <textarea id="message" name="message" placeholder="Spill the silliness!" required></textarea>
 
-        <button type="submit">Send</button>
+        <button type="submit">Send the Giggles</button>
       </form>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Panikura Club. All rights reserved.</p>
+    <p>&copy; 2025 Panikura Club. Wackiness guaranteed!</p>
   </footer>
+
+  <!-- Wacky Disco Mode Script -->
+  <script>
+    const discoBtn = document.getElementById('discoBtn');
+    discoBtn.addEventListener('click', () => {
+      document.body.classList.toggle('disco');
+      discoBtn.textContent = document.body.classList.contains('disco')
+        ? 'Turn off Disco Mode!'
+        : 'Turn on Disco Mode!';
+    });
+  </script>
 </body>
 </html>
