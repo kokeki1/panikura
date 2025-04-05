@@ -92,21 +92,19 @@
       margin-bottom: 2rem;
     }
 
-    #schizoBtn {
-      background: red;
-      color: white;
-      font-weight: bold;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      margin: 1rem 0;
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10001;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    }
+#schizoBtn {
+  position: relative; /* Keep it in the normal flow */
+  margin-top: 50px; /* Optional: space above the button */
+  padding: 15px 30px;
+  background-color: red;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 100%; /* Or change width if you want a smaller button */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+    
   </style>
 </head>
 <body>
