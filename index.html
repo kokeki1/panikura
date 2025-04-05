@@ -218,82 +218,95 @@
       list.appendChild(dd);
     });
 
-    const paranoiaPhrases = [
-      "THE FEDS ARE AFTER YOU",
-      "THEY ARE LISTENING",
-      "THEY WANT YOU TO THINK YOU'RE CRAZY",
-      "WAKE UP",
-      "YOU ARE NOT SAFE",
-      "TRUST NO ONE",
-      "MONARCH PROTOCOL ACTIVE",
-      "5G MIND CONTROL",
-      "IS THIS REALITY?",
-      "THEY'RE IN THE WALLS",
-      "WAKE UP, AGENT",
-      "JUSTO IS A LIE",
-      "PORTAL OPENS TONIGHT",
-      "YOU WILL NEVER REACH N1",
-      "ABE IS ALIVE"
-    ];
+const paranoiaPhrases = [
+  "THE FEDS ARE AFTER YOU",
+  "THEY ARE LISTENING",
+  "THEY WANT YOU TO THINK YOU'RE CRAZY",
+  "WAKE UP",
+  "YOU ARE NOT SAFE",
+  "TRUST NO ONE",
+  "MONARCH PROTOCOL ACTIVE",
+  "5G MIND CONTROL",
+  "IS THIS REALITY?",
+  "THEY'RE IN THE WALLS",
+  "WAKE UP, AGENT",
+  "JUSTO IS A LIE",
+  "PORTAL OPENS TONIGHT",
+  "YOU WILL NEVER REACH N1",
+  "ABE IS ALIVE"
+];
 
-    let flickerInterval, paranoiaInterval, mutateInterval;
+let flickerInterval;
+let textChangeInterval;
+let paranoiaInterval;
 
-    document.getElementById("schizoBtn").addEventListener("click", () => {
-      document.body.classList.add("schizo-mode");
+document.getElementById("schizoBtn").addEventListener("click", () => {
+  document.body.classList.add("schizo-mode");
 
-      flickerInterval = setInterval(() => {
-        const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
-        const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
-        allElements.forEach(el => {
-          if (Math.random() < 0.1) {
-            el.textContent = randomText[Math.floor(Math.random() * randomText.length)];
-          }
-          if (Math.random() < 0.05) {
-            el.style.position = "absolute";
-            el.style.left = Math.random() * window.innerWidth + "px";
-            el.style.top = Math.random() * window.innerHeight + "px";
-          }
-        });
-      }, 500);
-
-      paranoiaInterval = setInterval(() => {
-        const msg = document.createElement("div");
-        msg.className = "floating-paranoia";
-        msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
-        msg.style.left = Math.random() * window.innerWidth + "px";
-        msg.style.top = Math.random() * window.innerHeight + "px";
-        document.body.appendChild(msg);
-        setTimeout(() => msg.remove(), 5000);
-      }, 800);
-
-setTimeout(() => {
-  const seizureNotice = document.createElement("div");
-  seizureNotice.classList.add("seizure-notice");
-  seizureNotice.innerHTML = `
-    <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
-    <p>by the Central Intelligence Agency</p>
-    <p>in cooperation with the National Security Agency and the Department of Justice</p>
-    <br />
-    <p>This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
-    <p><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
-    <p><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
-    <p><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
-    <br />
-    <p>Your digital fingerprint, IP address, and access logs have been recorded.</p>
-    <p>This activity is now part of an open federal case file.</p>
-    <p>You are being actively monitored.</p>
-    <br />
-    <p style="color:#ff5555"><strong>DO NOT ATTEMPT TO EXIT THIS PAGE.</strong></p>
-    <p style="color:#ff5555"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
-    <br />
-    <p>Case Number: 19-482-AQ-NSA</p>
-    <p>Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
-  `;
-  document.body.appendChild(seizureNotice);
-  seizureNotice.style.display = 'flex';  // Ensure it shows up
-}, 10000); // Delay for 10 seconds before showing the notice
-
+  // Flickering and text-changing effects
+  flickerInterval = setInterval(() => {
+    const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
+    const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
+    allElements.forEach(el => {
+      if (Math.random() < 0.1) {
+        el.textContent = randomText[Math.floor(Math.random() * randomText.length)];
+      }
+      if (Math.random() < 0.05) {
+        el.style.position = "absolute";
+        el.style.left = Math.random() * window.innerWidth + "px";
+        el.style.top = Math.random() * window.innerHeight + "px";
+        el.classList.add("schizo");
+      }
     });
+  }, 500);
+
+  paranoiaInterval = setInterval(() => {
+    const msg = document.createElement("div");
+    msg.className = "floating-paranoia";
+    msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
+    msg.style.left = Math.random() * window.innerWidth + "px";
+    msg.style.top = Math.random() * window.innerHeight + "px";
+    document.body.appendChild(msg);
+    setTimeout(() => msg.remove(), 5000);
+  }, 800);
+
+  // Seizure notice after 10 seconds
+  setTimeout(() => {
+    const seizureNotice = document.createElement("div");
+    seizureNotice.classList.add("seizure-notice");
+    seizureNotice.innerHTML = `
+      <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
+      <p>by the Central Intelligence Agency</p>
+      <p>in cooperation with the National Security Agency and the Department of Justice</p>
+      <br />
+      <p>This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
+      <p><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
+      <p><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
+      <p><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
+      <br />
+      <p>Your digital fingerprint, IP address, and access logs have been recorded.</p>
+      <p>This activity is now part of an open federal case file.</p>
+      <p>You are being actively monitored.</p>
+      <br />
+      <p style="color:#ff5555"><strong>DO NOT ATTEMPT TO EXIT THIS PAGE.</strong></p>
+      <p style="color:#ff5555"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
+      <br />
+      <p>Case Number: 19-482-AQ-NSA</p>
+      <p>Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
+    `;
+    document.body.appendChild(seizureNotice);
+
+    // Stop flickering and text-changing effects
+    clearInterval(flickerInterval);
+    clearInterval(textChangeInterval);
+    clearInterval(paranoiaInterval);
+
+    // Stop schizo mode and any further interference
+    document.body.classList.remove("schizo-mode");
+
+    seizureNotice.style.display = 'block';  // Ensure it shows up
+  }, 10000);
+});
   </script>
 </body>
 </html>
