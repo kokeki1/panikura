@@ -327,6 +327,7 @@ setTimeout(() => {
   const glitchElements = document.querySelectorAll(".seizure-notice .glitchable");
 
 // Start glitch loop after 4-second delay
+// Start glitch loop after 4-second delay
 setTimeout(() => {
   const glitchLoop = setInterval(() => {
     const el = glitchElements[Math.floor(Math.random() * glitchElements.length)];
@@ -346,12 +347,13 @@ setTimeout(() => {
   setTimeout(() => {
     clearInterval(glitchLoop);
 
-        // Close the page after 5 seconds of glitching ends (after 15 seconds of glitch loop)
+    // Close the page after 5 seconds of glitching ends (after 15 seconds of glitch loop)
     setTimeout(() => {
       window.close();
     }, 5000);
   }, 15000);
 }, 4000); // 4-second delay before glitching starts
+
 
 }, 10000);
 
