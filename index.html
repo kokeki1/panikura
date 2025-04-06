@@ -217,7 +217,7 @@ is it all correct now: <!DOCTYPE html>
       const dt = document.createElement("dt");
       dt.textContent = item.term;
       const dd = document.createElement("dd");
-      dd.innerHTML = <p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>;
+      dd.innerHTML = `<p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>`;
       list.appendChild(dt);
       list.appendChild(dd);
     });
