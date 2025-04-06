@@ -312,7 +312,7 @@
         <br />
         <p style="color: grey; font-size: 0.8rem;">This message is fictitious and part of a satirical project.</p>
         <div id="ominous-link" style="display: none; margin-top: 20px;">
-          <a href="https://www.youtube.com/watch?v=6qicJjUumZU" style="color: red; font-size: 1.5rem; text-decoration: underline;">Click here for more information</a>
+          <a href="YOUR_CONFIGURABLE_LINK_HERE" style="color: red; font-size: 1.5rem; text-decoration: underline;">Click here for more information</a>
         </div>
       `;
       document.body.appendChild(seizureNotice);
@@ -368,9 +368,7 @@
             el.textContent = original;
           }, 1000 + Math.random() * 2000);
         }, 500);
-
-        // Stop glitching 15 seconds after
-                // Stop glitching 15 seconds after it starts (so ~19 seconds total from seizureNotice appearance)
+        // Stop glitching 15 seconds after it starts (so ~19 seconds total from seizureNotice appearance)
         setTimeout(() => {
           clearInterval(glitchLoop);
         }, 15000);
@@ -379,5 +377,6 @@
     }, 10000); // End of seizure notice timeout
   });
 </script>
-</body>
+
+        //</body>
 </html>
