@@ -313,36 +313,95 @@ setTimeout(() => {
 
   seizureNotice.style.display = 'block';  // Ensure it shows up
 
-  // After 5 seconds, turn seizure notice into Japanese
-  setTimeout(() => {
-    const seizureNotice = document.querySelector(".seizure-notice");
-    if (seizureNotice) {
-      seizureNotice.innerHTML = `
-        <div style="text-align: center; margin-bottom: 20px;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
-        </div>
-        <h1 style="font-size: 2rem; margin-bottom: 1rem;">このドメインは押収されました</h1>
-        <p>中央情報局（CIA）によって</p>
-        <p>国家安全保障局および司法省との協力のもと</p>
-        <br />
-        <p>このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました：</p>
-        <p><strong>合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）</strong></p>
-        <p><strong>合衆国法典 第50編 §1801以降（外国情報監視法）</strong></p>
-        <p><strong>合衆国法典 第18編 §371（米国政府に対する共謀）</strong></p>
-        <br />
-        <p>あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。</p>
-        <p>この活動は現在、連邦捜査ファイルの一部となっています。</p>
-        <p>あなたは現在、監視されています。</p>
-        <br />
-        <p style="color:#ff5555"><strong>これ以上の行動は法的な結果を招く可能性があります。</strong></p>
-        <br />
-        <p>事件番号: 19-482-AQ-NSA</p>
-        <p>追跡セッションID: <span id="session-id">${crypto.randomUUID()}</span></p>
-        <br />
-        <p style="color: grey; font-size: 0.8rem;">このメッセージはフィクションであり、風刺プロジェクトの一部です。</p>
-      `;
+setTimeout(() => {
+  const seizureNotice = document.querySelector(".seizure-notice");
+
+  if (!seizureNotice) return;
+
+  // Define English and Japanese lines in arrays for toggling
+  const seizureLines = [
+    {
+      en: "THIS DOMAIN HAS BEEN SEIZED",
+      jp: "このドメインは押収されました"
+    },
+    {
+      en: "by the Central Intelligence Agency",
+      jp: "中央情報局（CIA）によって"
+    },
+    {
+      en: "in cooperation with the National Security Agency and the Department of Justice",
+      jp: "国家安全保障局および司法省との協力のもと"
+    },
+    {
+      en: "This site has been seized as part of a federal investigation into unauthorized activities in violation of:",
+      jp: "このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました："
+    },
+    {
+      en: "Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)",
+      jp: "合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）"
+    },
+    {
+      en: "Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)",
+      jp: "合衆国法典 第50編 §1801以降（外国情報監視法）"
+    },
+    {
+      en: "Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)",
+      jp: "合衆国法典 第18編 §371（米国政府に対する共謀）"
+    },
+    {
+      en: "Your digital fingerprint, IP address, and access logs have been recorded.",
+      jp: "あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。"
+    },
+    {
+      en: "This activity is now part of an open federal case file.",
+      jp: "この活動は現在、連邦捜査ファイルの一部となっています。"
+    },
+    {
+      en: "You are being actively monitored.",
+      jp: "あなたは現在、監視されています。"
+    },
+    {
+      en: "ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.",
+      jp: "これ以上の行動は法的な結果を招く可能性があります。"
+    },
+    {
+      en: "Case Number: 19-482-AQ-NSA",
+      jp: "事件番号: 19-482-AQ-NSA"
+    },
+    {
+      en: `Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span>`,
+      jp: `追跡セッションID: <span id="session-id">${crypto.randomUUID()}</span>`
+    },
+    {
+      en: "This message is fictitious and part of a satirical project.",
+      jp: "このメッセージはフィクションであり、風刺プロジェクトの一部です。"
     }
-  }, 5000); // 5 seconds after seizure notice appears
+  ];
+
+  // Create and append seizure text line-by-line
+  seizureNotice.innerHTML = `
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
+    </div>
+  `;
+
+  seizureLines.forEach((line, index) => {
+    const p = document.createElement(index === 0 ? "h1" : "p");
+    p.innerHTML = line.en;
+    seizureNotice.appendChild(p);
+    line._element = p; // Store reference
+  });
+
+  // Now toggle the lines randomly every 1–3 seconds
+  setInterval(() => {
+    seizureLines.forEach(line => {
+      if (Math.random() < 0.25) {
+        const showJP = Math.random() < 0.5;
+        line._element.innerHTML = showJP ? line.jp : line.en;
+      }
+    });
+  }, 1500);
+}, 15000); // 10s delay + 5s wait = 15s total
 }, 10000);
     });
   </script>
