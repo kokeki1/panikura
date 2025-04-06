@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+is it all correct now: <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -21,34 +21,18 @@
       100% { opacity: 1; }
     }
 
-.floating-paranoia {
-  position: fixed;
-  font-size: 1.2rem;
-  font-weight: 900;
-  color: #ff2222;
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba(255, 0, 0, 0.7);
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 99999;
-  pointer-events: none;
-  font-family: monospace, 'Courier New', sans-serif;
-  white-space: nowrap;
-  text-shadow:
-    0 0 5px red,
-    0 0 10px red,
-    0 0 20px #ff00ff;
-  transform: rotate(-2deg) scale(1);
-  animation: paranoia-fade 5s ease-in-out, schizo-wiggle 0.2s infinite alternate;
-}
-
-@keyframes schizo-wiggle {
-  0% {
-    transform: translate(0px, 0px) rotate(-2deg) scale(1);
-  }
-  100% {
-    transform: translate(3px, -2px) rotate(2deg) scale(1.05);
-  }
-}
+    .floating-paranoia {
+      position: fixed;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: red;
+      background: black;
+      padding: 0.5rem 1rem;
+      border: 2px solid red;
+      animation: paranoia-fade 5s ease-in-out;
+      z-index: 99999;
+      pointer-events: none;
+    }
 
     @keyframes paranoia-fade {
       0% {
@@ -233,7 +217,7 @@
       const dt = document.createElement("dt");
       dt.textContent = item.term;
       const dd = document.createElement("dd");
-      dd.innerHTML = `<p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>`;
+      dd.innerHTML = <p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>;
       list.appendChild(dt);
       list.appendChild(dd);
     });
@@ -280,166 +264,87 @@
         });
       }, 500);
 
-paranoiaInterval = setInterval(() => {
-  const msg = document.createElement("div");
-  msg.className = "floating-paranoia";
-  msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
-
-  // Random rotation and scale
-  const angle = (Math.random() * 20 - 10).toFixed(2);
-  const scale = (Math.random() * 0.4 + 0.8).toFixed(2);
-  msg.style.transform = `rotate(${angle}deg) scale(${scale})`;
-
-  // Random font size and font
-  const fonts = ["monospace", "Courier New", "Arial Black", "Impact", "Lucida Console"];
-  msg.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
-  msg.style.fontSize = `${Math.floor(Math.random() * 10 + 16)}px`;
-
-  // Random position
-  msg.style.left = Math.random() * (window.innerWidth - 200) + "px";
-  msg.style.top = Math.random() * (window.innerHeight - 50) + "px";
-
-  document.body.appendChild(msg);
-  setTimeout(() => msg.remove(), 5000);
-}, 800);
-
+      paranoiaInterval = setInterval(() => {
+        const msg = document.createElement("div");
+        msg.className = "floating-paranoia";
+        msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
+        msg.style.left = Math.random() * window.innerWidth + "px";
+        msg.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 5000);
+      }, 800);
 // Seizure notice after 10 seconds
 setTimeout(() => {
   const seizureNotice = document.createElement("div");
   seizureNotice.classList.add("seizure-notice");
+  seizureNotice.innerHTML = `
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
+    </div>
+    <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
+    <p class="glitchable">by the Central Intelligence Agency</p>
+    <p class="glitchable">in cooperation with the National Security Agency and the Department of Justice</p>
+    <br />
+    <p class="glitchable">This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
+    <p class="glitchable"><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
+    <p class="glitchable"><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
+    <p class="glitchable"><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
+    <br />
+    <p class="glitchable">Your digital fingerprint, IP address, and access logs have been recorded.</p>
+    <p class="glitchable">This activity is now part of an open federal case file.</p>
+    <p class="glitchable">You are being actively monitored.</p>
+    <br />
+    <p style="color:#ff5555" class="glitchable"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
+    <br />
+    <p class="glitchable">Case Number: 19-482-AQ-NSA</p>
+    <p class="glitchable">Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
+    <br />
+    <p style="color: grey; font-size: 0.8rem;">This message is fictitious and part of a satirical project.</p>
+  `;
   document.body.appendChild(seizureNotice);
-  seizureNotice.style.display = "flex";
+  seizureNotice.style.display = 'block';
 
-  // English version (initial)
-  const englishText = [
-    "THIS DOMAIN HAS BEEN SEIZED",
-    "by the Central Intelligence Agency",
-    "in cooperation with the National Security Agency and the Department of Justice",
-    "",
-    "This site has been seized as part of a federal investigation into unauthorized activities in violation of:",
-    "Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)",
-    "Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)",
-    "Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)",
-    "",
-    "Your digital fingerprint, IP address, and access logs have been recorded.",
-    "This activity is now part of an open federal case file.",
-    "You are being actively monitored.",
-    "",
-    "ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.",
-    "",
-    "Case Number: 19-482-AQ-NSA",
-    `Tracking Session ID: ${crypto.randomUUID()}`,
-    "",
-    "This message is fictitious and part of a satirical project."
-  ];
-
-  const japaneseText = [
-    "このドメインは押収されました",
-    "中央情報局（CIA）によって",
-    "国家安全保障局および司法省との協力のもと",
-    "",
-    "このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました：",
-    "合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）",
-    "合衆国法典 第50編 §1801以降（外国情報監視法）",
-    "合衆国法典 第18編 §371（米国政府に対する共謀）",
-    "",
-    "あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。",
-    "この活動は現在、連邦捜査ファイルの一部となっています。",
-    "あなたは現在、監視されています。",
-    "",
-    "これ以上の行動は法的な結果を招く可能性があります。",
-    "",
-    "事件番号: 19-482-AQ-NSA",
-    `追跡セッションID: ${crypto.randomUUID()}`,
-    "",
-    "このメッセージはフィクションであり、風刺プロジェクトの一部です。"
-  ];
-
-  // Apply styles
-  seizureNotice.style.fontFamily = "'Courier New', monospace";
-  seizureNotice.style.fontSize = "1rem";
-  seizureNotice.style.color = "#ff0000";
-  seizureNotice.style.textShadow = "0 0 5px red, 0 0 10px #ff0000, 0 0 2px #0ff";
-
-  function writeLines(lines, el, cb, delay = 50) {
-    let i = 0;
-    function typeLine() {
-      if (i >= lines.length) {
-        cb && cb();
-        return;
-      }
-      const p = document.createElement("p");
-      el.appendChild(p);
-      typewriter(p, lines[i], () => {
-        i++;
-        typeLine();
-      }, delay);
-    }
-    typeLine();
-  }
-
-  function typewriter(el, text, cb, speed = 50) {
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i >= text.length) {
-        clearInterval(interval);
-        cb && cb();
-        return;
-      }
-      const char = text.charAt(i);
-      el.textContent += Math.random() < 0.05 ? glitchChar(char) : char;
-      el.style.textShadow = Math.random() > 0.5 ? "0 0 2px red" : "0 0 1px #0ff";
-      i++;
-    }, speed + Math.random() * 30);
-  }
-
-  function glitchChar(char) {
-    const glitchChars = "＠＃￥％＆＊！？＝＋＿◉◎◌▯▮▭▱▣▤▥▦▧▨▩";
-    return glitchChars[Math.floor(Math.random() * glitchChars.length)] || char;
-  }
-
-  function wipeText(callback) {
-    const lines = seizureNotice.querySelectorAll("p");
-    let i = lines.length - 1;
-    function wipeLine() {
-      if (i < 0) {
-        seizureNotice.innerHTML = ""; // wipe complete
-        callback();
-        return;
-      }
-      const text = lines[i].textContent;
-      let j = text.length;
-      const interval = setInterval(() => {
-        if (j <= 0) {
-          clearInterval(interval);
-          i--;
-          wipeLine();
-        } else {
-          lines[i].textContent = text.slice(0, j - 1);
-          j--;
-        }
-      }, 20);
-    }
-    wipeLine();
-  }
-
-  // Run English version
-  writeLines(englishText, seizureNotice, () => {
-    // After 5 seconds, start wiping and typing Japanese
-    setTimeout(() => {
-      wipeText(() => {
-        writeLines(japaneseText, seizureNotice);
-      });
-    }, 5000);
-  });
-
-  // Stop schizo mode
   clearInterval(flickerInterval);
   clearInterval(textChangeInterval);
   clearInterval(paranoiaInterval);
   document.body.classList.remove("schizo-mode");
 
-}, 10000); // Initial 10 sec delay
+  const jpGlitchMap = {
+    "by the Central Intelligence Agency": "中央情報局（CIA）によって",
+    "in cooperation with the National Security Agency and the Department of Justice": "国家安全保障局および司法省との協力のもと",
+    "This site has been seized as part of a federal investigation into unauthorized activities in violation of:": "このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました：",
+    "Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)": "合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）",
+    "Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)": "合衆国法典 第50編 §1801以降（外国情報監視法）",
+    "Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)": "合衆国法典 第18編 §371（米国政府に対する共謀）",
+    "Your digital fingerprint, IP address, and access logs have been recorded.": "あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。",
+    "This activity is now part of an open federal case file.": "この活動は現在、連邦捜査ファイルの一部となっています。",
+    "You are being actively monitored.": "あなたは現在、監視されています。",
+    "ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.": "これ以上の行動は法的な結果を招く可能性があります。",
+    "Case Number: 19-482-AQ-NSA": "事件番号: 19-482-AQ-NSA",
+    "Tracking Session ID:": "追跡セッションID:"
+  };
+
+  const glitchElements = document.querySelectorAll(".seizure-notice .glitchable");
+
+  const glitchLoop = setInterval(() => {
+    const el = glitchElements[Math.floor(Math.random() * glitchElements.length)];
+    if (!el) return;
+
+    const original = el.textContent;
+    const translated = jpGlitchMap[original] || original;
+
+    el.textContent = translated;
+
+    setTimeout(() => {
+      el.textContent = original;
+    }, 1000 + Math.random() * 2000);
+  }, 500);
+
+  // Stop glitching after 15 seconds
+  setTimeout(() => {
+    clearInterval(glitchLoop);
+  }, 15000);
+}, 10000);
 
     });
   </script>
