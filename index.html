@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+fix any problems: <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -218,6 +218,7 @@
       dt.textContent = item.term;
       const dd = document.createElement("dd");
       dd.innerHTML = `<p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>`;
+
       list.appendChild(dt);
       list.appendChild(dd);
     });
@@ -277,7 +278,7 @@
 setTimeout(() => {
   const seizureNotice = document.createElement("div");
   seizureNotice.classList.add("seizure-notice");
-  seizureNotice.innerHTML = 
+  seizureNotice.innerHTML = `
     <div style="text-align: center; margin-bottom: 20px;">
       <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
     </div>
@@ -342,15 +343,6 @@ setTimeout(() => {
       el.textContent = original;
     }, 1000 + Math.random() * 2000);
   }, 500);
-
-  // Stop glitching 15 seconds after it starts (so ~19 seconds total from seizureNotice appearance)
-  setTimeout(() => {
-    clearInterval(glitchLoop);
-
-    // Close the page after 5 seconds of glitching ends (after 15 seconds of glitch loop)
-    setTimeout(() => {
-      window.close();
-    }, 5000);
   }, 15000);
 }, 4000); // 4-second delay before glitching starts
 
