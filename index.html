@@ -307,132 +307,140 @@ paranoiaInterval = setInterval(() => {
 setTimeout(() => {
   const seizureNotice = document.createElement("div");
   seizureNotice.classList.add("seizure-notice");
-  seizureNotice.innerHTML = 
-    `<div style="text-align: center; margin-bottom: 20px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
-    </div>
-    <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
-    <p>by the Central Intelligence Agency</p>
-    <p>in cooperation with the National Security Agency and the Department of Justice</p>
-    <br />
-    <p>This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
-    <p><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
-    <p><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
-    <p><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
-    <br />
-    <p>Your digital fingerprint, IP address, and access logs have been recorded.</p>
-    <p>This activity is now part of an open federal case file.</p>
-    <p>You are being actively monitored.</p>
-    <br />
-    <p style="color:#ff5555"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
-    <br />
-    <p>Case Number: 19-482-AQ-NSA</p>
-    <p>Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
-    <br />
-    <p style="color: grey; font-size: 0.8rem;">This message is fictitious and part of a satirical project.</p>`;
-
   document.body.appendChild(seizureNotice);
+  seizureNotice.style.display = "flex";
 
-  // Stop flickering and text-changing effects
+  // English version (initial)
+  const englishText = [
+    "THIS DOMAIN HAS BEEN SEIZED",
+    "by the Central Intelligence Agency",
+    "in cooperation with the National Security Agency and the Department of Justice",
+    "",
+    "This site has been seized as part of a federal investigation into unauthorized activities in violation of:",
+    "Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)",
+    "Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)",
+    "Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)",
+    "",
+    "Your digital fingerprint, IP address, and access logs have been recorded.",
+    "This activity is now part of an open federal case file.",
+    "You are being actively monitored.",
+    "",
+    "ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.",
+    "",
+    "Case Number: 19-482-AQ-NSA",
+    `Tracking Session ID: ${crypto.randomUUID()}`,
+    "",
+    "This message is fictitious and part of a satirical project."
+  ];
+
+  const japaneseText = [
+    "このドメインは押収されました",
+    "中央情報局（CIA）によって",
+    "国家安全保障局および司法省との協力のもと",
+    "",
+    "このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました：",
+    "合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）",
+    "合衆国法典 第50編 §1801以降（外国情報監視法）",
+    "合衆国法典 第18編 §371（米国政府に対する共謀）",
+    "",
+    "あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。",
+    "この活動は現在、連邦捜査ファイルの一部となっています。",
+    "あなたは現在、監視されています。",
+    "",
+    "これ以上の行動は法的な結果を招く可能性があります。",
+    "",
+    "事件番号: 19-482-AQ-NSA",
+    `追跡セッションID: ${crypto.randomUUID()}`,
+    "",
+    "このメッセージはフィクションであり、風刺プロジェクトの一部です。"
+  ];
+
+  // Apply styles
+  seizureNotice.style.fontFamily = "'Courier New', monospace";
+  seizureNotice.style.fontSize = "1rem";
+  seizureNotice.style.color = "#ff0000";
+  seizureNotice.style.textShadow = "0 0 5px red, 0 0 10px #ff0000, 0 0 2px #0ff";
+
+  function writeLines(lines, el, cb, delay = 50) {
+    let i = 0;
+    function typeLine() {
+      if (i >= lines.length) {
+        cb && cb();
+        return;
+      }
+      const p = document.createElement("p");
+      el.appendChild(p);
+      typewriter(p, lines[i], () => {
+        i++;
+        typeLine();
+      }, delay);
+    }
+    typeLine();
+  }
+
+  function typewriter(el, text, cb, speed = 50) {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i >= text.length) {
+        clearInterval(interval);
+        cb && cb();
+        return;
+      }
+      const char = text.charAt(i);
+      el.textContent += Math.random() < 0.05 ? glitchChar(char) : char;
+      el.style.textShadow = Math.random() > 0.5 ? "0 0 2px red" : "0 0 1px #0ff";
+      i++;
+    }, speed + Math.random() * 30);
+  }
+
+  function glitchChar(char) {
+    const glitchChars = "＠＃￥％＆＊！？＝＋＿◉◎◌▯▮▭▱▣▤▥▦▧▨▩";
+    return glitchChars[Math.floor(Math.random() * glitchChars.length)] || char;
+  }
+
+  function wipeText(callback) {
+    const lines = seizureNotice.querySelectorAll("p");
+    let i = lines.length - 1;
+    function wipeLine() {
+      if (i < 0) {
+        seizureNotice.innerHTML = ""; // wipe complete
+        callback();
+        return;
+      }
+      const text = lines[i].textContent;
+      let j = text.length;
+      const interval = setInterval(() => {
+        if (j <= 0) {
+          clearInterval(interval);
+          i--;
+          wipeLine();
+        } else {
+          lines[i].textContent = text.slice(0, j - 1);
+          j--;
+        }
+      }, 20);
+    }
+    wipeLine();
+  }
+
+  // Run English version
+  writeLines(englishText, seizureNotice, () => {
+    // After 5 seconds, start wiping and typing Japanese
+    setTimeout(() => {
+      wipeText(() => {
+        writeLines(japaneseText, seizureNotice);
+      });
+    }, 5000);
+  });
+
+  // Stop schizo mode
   clearInterval(flickerInterval);
   clearInterval(textChangeInterval);
   clearInterval(paranoiaInterval);
-
-  // Stop schizo mode and any further interference
   document.body.classList.remove("schizo-mode");
 
-  seizureNotice.style.display = 'block';  // Ensure it shows up
+}, 10000); // Initial 10 sec delay
 
-setTimeout(() => {
-  const seizureNotice = document.querySelector(".seizure-notice");
-
-  if (!seizureNotice) return;
-
-  // Define English and Japanese lines in arrays for toggling
-  const seizureLines = [
-    {
-      en: "THIS DOMAIN HAS BEEN SEIZED",
-      jp: "このドメインは押収されました"
-    },
-    {
-      en: "by the Central Intelligence Agency",
-      jp: "中央情報局（CIA）によって"
-    },
-    {
-      en: "in cooperation with the National Security Agency and the Department of Justice",
-      jp: "国家安全保障局および司法省との協力のもと"
-    },
-    {
-      en: "This site has been seized as part of a federal investigation into unauthorized activities in violation of:",
-      jp: "このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました："
-    },
-    {
-      en: "Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)",
-      jp: "合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）"
-    },
-    {
-      en: "Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)",
-      jp: "合衆国法典 第50編 §1801以降（外国情報監視法）"
-    },
-    {
-      en: "Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)",
-      jp: "合衆国法典 第18編 §371（米国政府に対する共謀）"
-    },
-    {
-      en: "Your digital fingerprint, IP address, and access logs have been recorded.",
-      jp: "あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。"
-    },
-    {
-      en: "This activity is now part of an open federal case file.",
-      jp: "この活動は現在、連邦捜査ファイルの一部となっています。"
-    },
-    {
-      en: "You are being actively monitored.",
-      jp: "あなたは現在、監視されています。"
-    },
-    {
-      en: "ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.",
-      jp: "これ以上の行動は法的な結果を招く可能性があります。"
-    },
-    {
-      en: "Case Number: 19-482-AQ-NSA",
-      jp: "事件番号: 19-482-AQ-NSA"
-    },
-    {
-      en: `Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span>`,
-      jp: `追跡セッションID: <span id="session-id">${crypto.randomUUID()}</span>`
-    },
-    {
-      en: "This message is fictitious and part of a satirical project.",
-      jp: "このメッセージはフィクションであり、風刺プロジェクトの一部です。"
-    }
-  ];
-
-  // Create and append seizure text line-by-line
-  seizureNotice.innerHTML = `
-    <div style="text-align: center; margin-bottom: 20px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
-    </div>
-  `;
-
-  seizureLines.forEach((line, index) => {
-    const p = document.createElement(index === 0 ? "h1" : "p");
-    p.innerHTML = line.en;
-    seizureNotice.appendChild(p);
-    line._element = p; // Store reference
-  });
-
-  // Now toggle the lines randomly every 1–3 seconds
-  setInterval(() => {
-    seizureLines.forEach(line => {
-      if (Math.random() < 0.25) {
-        const showJP = Math.random() < 0.5;
-        line._element.innerHTML = showJP ? line.jp : line.en;
-      }
-    });
-  }, 1500);
-}, 15000); // 10s delay + 5s wait = 15s total
-}, 10000);
     });
   </script>
 </body>
