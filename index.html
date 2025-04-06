@@ -240,16 +240,19 @@
       }, 10000);
     });
 
-    // 404 Gaslight for dead links
-    document.querySelectorAll(".dead-link").forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        document.getElementById("fake404").style.display = "flex";
-        setTimeout(() => {
-          document.getElementById("fake404").style.display = "none";
-        }, 7000);
-      });
-    });
+document.querySelectorAll(".dead-link").forEach(link => {
+  link.addEventListener("click", e => {
+    // Only activate if user actually clicks, not just page loading
+    if (e.isTrusted) {
+      e.preventDefault();
+      document.getElementById("fake404").style.display = "flex";
+      setTimeout(() => {
+        document.getElementById("fake404").style.display = "none";
+      }, 7000);
+    }
+  });
+});
+
   </script>
 </body>
 </html>
