@@ -345,6 +345,11 @@ setTimeout(() => {
   // Stop glitching 15 seconds after it starts (so ~19 seconds total from seizureNotice appearance)
   setTimeout(() => {
     clearInterval(glitchLoop);
+
+        // Close the page after 5 seconds of glitching ends (after 15 seconds of glitch loop)
+    setTimeout(() => {
+      window.close();
+    }, 5000);
   }, 15000);
 }, 4000); // 4-second delay before glitching starts
 
