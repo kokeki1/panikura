@@ -21,18 +21,34 @@
       100% { opacity: 1; }
     }
 
-    .floating-paranoia {
-      position: fixed;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: red;
-      background: black;
-      padding: 0.5rem 1rem;
-      border: 2px solid red;
-      animation: paranoia-fade 5s ease-in-out;
-      z-index: 99999;
-      pointer-events: none;
-    }
+.floating-paranoia {
+  position: fixed;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ff2222;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 99999;
+  pointer-events: none;
+  font-family: monospace, 'Courier New', sans-serif;
+  white-space: nowrap;
+  text-shadow:
+    0 0 5px red,
+    0 0 10px red,
+    0 0 20px #ff00ff;
+  transform: rotate(-2deg) scale(1);
+  animation: paranoia-fade 5s ease-in-out, schizo-wiggle 0.2s infinite alternate;
+}
+
+@keyframes schizo-wiggle {
+  0% {
+    transform: translate(0px, 0px) rotate(-2deg) scale(1);
+  }
+  100% {
+    transform: translate(3px, -2px) rotate(2deg) scale(1.05);
+  }
+}
 
     @keyframes paranoia-fade {
       0% {
@@ -264,15 +280,29 @@
         });
       }, 500);
 
-      paranoiaInterval = setInterval(() => {
-        const msg = document.createElement("div");
-        msg.className = "floating-paranoia";
-        msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
-        msg.style.left = Math.random() * window.innerWidth + "px";
-        msg.style.top = Math.random() * window.innerHeight + "px";
-        document.body.appendChild(msg);
-        setTimeout(() => msg.remove(), 5000);
-      }, 800);
+paranoiaInterval = setInterval(() => {
+  const msg = document.createElement("div");
+  msg.className = "floating-paranoia";
+  msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
+
+  // Random rotation and scale
+  const angle = (Math.random() * 20 - 10).toFixed(2);
+  const scale = (Math.random() * 0.4 + 0.8).toFixed(2);
+  msg.style.transform = `rotate(${angle}deg) scale(${scale})`;
+
+  // Random font size and font
+  const fonts = ["monospace", "Courier New", "Arial Black", "Impact", "Lucida Console"];
+  msg.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+  msg.style.fontSize = `${Math.floor(Math.random() * 10 + 16)}px`;
+
+  // Random position
+  msg.style.left = Math.random() * (window.innerWidth - 200) + "px";
+  msg.style.top = Math.random() * (window.innerHeight - 50) + "px";
+
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 5000);
+}, 800);
+
 // Seizure notice after 10 seconds
 setTimeout(() => {
   const seizureNotice = document.createElement("div");
