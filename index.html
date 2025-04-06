@@ -326,6 +326,8 @@ setTimeout(() => {
 
   const glitchElements = document.querySelectorAll(".seizure-notice .glitchable");
 
+// Start glitch loop after 4-second delay
+setTimeout(() => {
   const glitchLoop = setInterval(() => {
     const el = glitchElements[Math.floor(Math.random() * glitchElements.length)];
     if (!el) return;
@@ -340,10 +342,12 @@ setTimeout(() => {
     }, 1000 + Math.random() * 2000);
   }, 500);
 
-  // Stop glitching after 15 seconds
+  // Stop glitching 15 seconds after it starts (so ~19 seconds total from seizureNotice appearance)
   setTimeout(() => {
     clearInterval(glitchLoop);
   }, 15000);
+}, 4000); // 4-second delay before glitching starts
+
 }, 10000);
 
     });
