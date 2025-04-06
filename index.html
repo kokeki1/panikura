@@ -1,4 +1,4 @@
-fix any problems: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -278,30 +278,30 @@ fix any problems: <!DOCTYPE html>
 setTimeout(() => {
   const seizureNotice = document.createElement("div");
   seizureNotice.classList.add("seizure-notice");
-  seizureNotice.innerHTML = `
-    <div style="text-align: center; margin-bottom: 20px;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
-    </div>
-    <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
-    <p class="glitchable">by the Central Intelligence Agency</p>
-    <p class="glitchable">in cooperation with the National Security Agency and the Department of Justice</p>
-    <br />
-    <p class="glitchable">This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
-    <p class="glitchable"><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
-    <p class="glitchable"><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
-    <p class="glitchable"><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
-    <br />
-    <p class="glitchable">Your digital fingerprint, IP address, and access logs have been recorded.</p>
-    <p class="glitchable">This activity is now part of an open federal case file.</p>
-    <p class="glitchable">You are being actively monitored.</p>
-    <br />
-    <p style="color:#ff5555" class="glitchable"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
-    <br />
-    <p class="glitchable">Case Number: 19-482-AQ-NSA</p>
-    <p class="glitchable">Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
-    <br />
-    <p style="color: grey; font-size: 0.8rem;">This message is fictitious and part of a satirical project.</p>
-  ;
+seizureNotice.innerHTML = `
+  <div style="text-align: center; margin-bottom: 20px;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
+  </div>
+  <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
+  <p class="glitchable">by the Central Intelligence Agency</p>
+  <p class="glitchable">in cooperation with the National Security Agency and the Department of Justice</p>
+  <br />
+  <p class="glitchable">This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
+  <p class="glitchable"><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
+  <p class="glitchable"><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
+  <p class="glitchable"><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
+  <br />
+  <p class="glitchable">Your digital fingerprint, IP address, and access logs have been recorded.</p>
+  <p class="glitchable">This activity is now part of an open federal case file.</p>
+  <p class="glitchable">You are being actively monitored.</p>
+  <br />
+  <p style="color:#ff5555" class="glitchable"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
+  <br />
+  <p class="glitchable">Case Number: 19-482-AQ-NSA</p>
+  <p class="glitchable">Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
+  <br />
+  <p style="color: grey; font-size: 0.8rem;">This message is fictitious and part of a satirical project.</p>
+`;
   document.body.appendChild(seizureNotice);
   seizureNotice.style.display = 'block';
 
