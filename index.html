@@ -48,7 +48,7 @@
         transform: scale(0.8) rotate(-10deg);
       }
     }
-  
+
     .seizure-notice {
       position: fixed;
       top: 0;
@@ -59,7 +59,7 @@
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg');
       background-repeat: no-repeat;
       background-position: top center;
-      background-size: 20%;  /* Adjust size so it fits above the text */
+      background-size: 20%;
       background-blend-mode: multiply;
       color: #FF0000;
       font-family: 'Courier New', Courier, monospace;
@@ -75,14 +75,14 @@
       letter-spacing: 0.5px;
       opacity: 0.97;
     }
-    
+
     .seizure-notice h1 {
-      margin-top: 20px;  /* Adds spacing below the logo */
+      margin-top: 20px;
       font-size: 2rem;
     }
-    
+
     .seizure-notice p {
-      margin: 10px 0;  /* Adds spacing between paragraphs */
+      margin: 10px 0;
     }
 
     .seizure-notice img {
@@ -92,260 +92,192 @@
 
     #schizoBtn {
       position: absolute;
-      width: auto; /* Automatically adjusts to fit the content */
-      height: auto; /* Automatically adjusts to fit the content */
-      left: 50%; /* Horizontally centers the button */
-      min-width: 0; /* Ensures the button shrinks to fit text without extra space */      
+      width: auto;
+      height: auto;
+      left: 50%;
+      min-width: 0;
       padding: 5px 10px;
       background-color: red;
       color: white;
       border: none;
       font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0px 0px 
-      10px rgba(0, 0, 0, 0.5);
-      z-index: 100000; /* Set a high z-index value to make sure it's on top */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      z-index: 100000;
     }
-    
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>Panikura Wiki</h1>
-      <p class="subtitle">A documentation project for the Panikura Group</p>
+      <div class="header-content">
+        <a href="#" class="logo">Panikura Wiki</a>
+        <span class="tagline">The free encyclopedia of Panikura Group terminology</span>
+      </div>
     </div>
     <nav>
       <div class="container">
         <ul>
           <li><a href="#">Main Page</a></li>
-          <li><a href="#">Lore (coming soon)</a></li>
+          <li><a href="#">Lore</a></li>
           <li><a href="#">Quotes</a></li>
-          <li><strong>Slang</strong></li>
+          <li><strong>Slang Dictionary</strong></li>
+          <li><a href="#" id="editLink">Edit</a></li>
         </ul>
       </div>
     </nav>
   </header>
 
   <main class="container">
-    <article>
-      <h2>Slang Dictionary</h2>
-      <p>This page documents common slang, jargon, and terminology used within the Panikura group.</p>
+    <div class="main-content">
+      <div class="content-area">
+        <article>
+          <h1>Slang Dictionary</h1>
+          <p>This page documents common slang, jargon, and terminology used within the Panikura group. The Panikura group is a collection of individuals who share common interests and have developed their own unique vocabulary over time.</p>
 
-      <dl id="slang-list"></dl>
+          <div id="editModePanel" class="edit-mode" style="display: none;">
+            <h3>Edit Mode Active</h3>
+            <p>You can now edit entries by clicking on them, or add new entries using the form below.</p>
 
-      <script id="slang-entries" type="application/json">
-        [
-          {
-            "term": "Digiboksi",
-            "definition": "A set-top box.",
-            "example": "What the hell is a digiboksi?"
-          },
-          {
-            "term": "Verkkokauppa",
-            "definition": "A Finnish online store.",
-            "example": "Verkkokauppa"
-          },
-          {
-            "term": "Suur-Saitama",
-            "definition": "Saitama will be great again.",
-            "example": "I'm willing to die for Suur-Saitama."
-          },
-          {
-            "term": "シコリティ",
-            "definition": "A slang term that expresses how 'shikoi' (sexually arousing or fappable) something is...",
-            "example": "このアニメキャラのシコリティは高いね。"
-          },
-          {
-            "term": "ヨーグルト系男子",
-            "definition": "A man who is gentle and mild, akin to the qualities of yogurt.",
-            "example": "彼はヨーグルト系男子で、誰とでも優しく接する。"
-          },
-          {
-            "term": "ソーグッド",
-            "definition": "Japanized 'So good', used to express excellence. Used by Koki in all situations.",
-            "example": "このケーキ、ソーグッドだね！"
-          },
-          {
-            "term": "ポータルやろう",
-            "definition": "A pun on 'portal' and 'guy' or 'play'. Can be used in any situation.",
-            "example": "ポータルやろう"
-          },
-          {
-            "term": "お世話になっております",
-            "definition": "A formal greeting meaning 'Thank you for your continued support'.",
-            "example": "お世話になっております。先日の件についてご連絡いたします。"
-          },
-          {
-            "term": "ふにゃ",
-            "definition": "An onomatopoeia for something soft, limp, or confused.",
-            "example": "彼の握手はふにゃっとしていて力がない。"
-          },
-          {
-            "term": "こいつジャスト？",
-            "definition": "A phrase questioning if someone is JUSToing.",
-            "example": "こいつジャスト？"
-          },
-          {
-            "term": "鎖国バリアー",
-            "definition": "A VRChat 'entry test' to keep out non-Japanese speakers.",
-            "example": "I couldn't get into the world because of the 鎖国バリアー quiz at the entrance."
-          }
-        ]
-      </script>
-    </article>
+            <div class="edit-form">
+              <div class="form-group">
+                <label for="newTerm">New Term:</label>
+                <input type="text" id="newTerm" placeholder="Enter new term">
+              </div>
+              <div class="form-group">
+                <label for="newDefinition">Definition:</label>
+                <textarea id="newDefinition" placeholder="Enter definition"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="newExample">Example:</label>
+                <input type="text" id="newExample" placeholder="Enter example usage">
+              </div>
+              <div class="form-actions">
+                <button class="btn btn-primary" onclick="addNewEntry()">Add Entry</button>
+                <button class="btn" onclick="exitEditMode()">Exit Edit Mode</button>
+              </div>
+            </div>
+          </div>
+
+          <h2>Terms and Definitions</h2>
+          <dl id="slang-list"></dl>
+        </article>
+      </div>
+
+      <div class="sidebar">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a href="#top">Back to top</a></li>
+          <li><a href="#terms">Terms A-Z</a></li>
+        </ul>
+
+        <h3>Tools</h3>
+        <ul>
+          <li><a href="#" id="sidebarEditLink">Edit this page</a></li>
+          <li><a href="#">Random entry</a></li>
+          <li><a href="#">Recent changes</a></li>
+        </ul>
+
+        <h3>Statistics</h3>
+        <ul>
+          <li><span id="entryCount">0</span> entries</li>
+          <li>Community edited</li>
+        </ul>
+      </div>
+    </div>
   </main>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
-      <p style="font-size: 0.8rem; color: #888; margin-top: 20px;">
-        <strong>DISCLAIMER:</strong> This site is entirely satirical in nature. All information posted here is part of an artistic work of fiction and falsehood. Only a fool would take anything posted here as a fact. 
-      </p>
-      
-      <button id="schizoBtn">Activate Schizo Mode</button>    
-      
+      <div class="footer-content">
+        <div>
+          <p>&copy; 2025 Panikura Wiki. Community-driven documentation project.</p>
+          <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">
+            <strong>DISCLAIMER:</strong> This site is entirely satirical in nature. All information posted here is part of an artistic work of fiction and falsehood. Only a fool would take anything posted here as a fact.
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Privacy</a>
+          <a href="#">Contact</a>
+          <button id="schizoBtn" class="btn btn-danger">Activate Schizo Mode</button>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script>
-    const slangData = JSON.parse(document.getElementById("slang-entries").textContent);
-      const list = document.getElementById("slang-list");
+  <!-- Secret code input modal -->
+  <div id="secretModal" class="overlay" style="display: none;">
+    <div class="secret-input">
+      <h3>Enter Secret Code</h3>
+      <input type="password" id="secretCode" placeholder="Enter secret code...">
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="checkSecretCode()">Submit</button>
+        <button class="btn" onclick="closeSecretModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
 
-    slangData.sort((a, b) => a.term.localeCompare(b.term, 'ja'));
-    slangData.forEach(item => {
-      const dt = document.createElement("dt");
-      dt.textContent = item.term;
-      const dd = document.createElement("dd");
-      dd.innerHTML = `<p>${item.definition}</p><p><em>Example:</em> ${item.example}</p>`;
-
-      list.appendChild(dt);
-      list.appendChild(dd);
-    });
-
-    const paranoiaPhrases = [
-      "THE FEDS ARE AFTER YOU",
-      "THEY ARE LISTENING",
-      "THEY WANT YOU TO THINK YOU'RE CRAZY",
-      "WAKE UP",
-      "YOU ARE NOT SAFE",
-      "TRUST NO ONE",
-      "MONARCH PROTOCOL ACTIVE",
-      "5G MIND CONTROL",
-      "IS THIS REALITY?",
-      "THEY'RE IN THE WALLS",
-      "WAKE UP, AGENT",
-      "JUSTO IS A LIE",
-      "PORTAL OPENS TONIGHT",
-      "YOU WILL NEVER REACH N1",
-      "ABE IS ALIVE"
-    ];
-
-    let flickerInterval;
-    let textChangeInterval;
-    let paranoiaInterval;
-
-    document.getElementById("schizoBtn").addEventListener("click", () => {
-      document.body.classList.add("schizo-mode");
-
-      // Flickering and text-changing effects
-      flickerInterval = setInterval(() => {
-        const allElements = document.querySelectorAll("p, h1, h2, dt, dd, li");
-        const randomText = ["パンイクラ", "？？？", "YES!!", "JUSTo", "SO-GOOD", "フニャ", "420", "GIGA", "???"];
-        allElements.forEach(el => {
-          if (Math.random() < 0.1) {
-            el.textContent = randomText[Math.floor(Math.random() * randomText.length)];
-          }
-          if (Math.random() < 0.05) {
-            el.style.position = "absolute";
-            el.style.left = Math.random() * window.innerWidth + "px";
-            el.style.top = Math.random() * window.innerHeight + "px";
-            el.classList.add("schizo");
-          }
-        });
-      }, 500);
-
-      paranoiaInterval = setInterval(() => {
-        const msg = document.createElement("div");
-        msg.className = "floating-paranoia";
-        msg.textContent = paranoiaPhrases[Math.floor(Math.random() * paranoiaPhrases.length)];
-        msg.style.left = Math.random() * window.innerWidth + "px";
-        msg.style.top = Math.random() * window.innerHeight + "px";
-        document.body.appendChild(msg);
-        setTimeout(() => msg.remove(), 5000);
-      }, 800);
-
-      // Seizure notice after 10 seconds
-      setTimeout(() => {
-        const seizureNotice = document.createElement("div");
-        seizureNotice.classList.add("seizure-notice");
-        seizureNotice.innerHTML = `
-          <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Seal_of_the_Central_Intelligence_Agency_%28B%26W%29.svg" alt="CIA Seal" style="max-width: 150px; max-height: 150px;">
-          </div>
-          <h1 style="font-size: 2rem; margin-bottom: 1rem;">THIS DOMAIN HAS BEEN SEIZED</h1>
-          <p class="glitchable">by the Central Intelligence Agency</p>
-          <p class="glitchable">in cooperation with the National Security Agency and the Department of Justice</p>
-          <br />
-          <p class="glitchable">This site has been seized as part of a federal investigation into unauthorized activities in violation of:</p>
-          <p class="glitchable"><strong>Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)</strong></p>
-          <p class="glitchable"><strong>Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)</strong></p>
-          <p class="glitchable"><strong>Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)</strong></p>
-          <br />
-          <p class="glitchable">Your digital fingerprint, IP address, and access logs have been recorded.</p>
-          <p class="glitchable">This activity is now part of an open federal case file.</p>
-                    <p class="glitchable">You are being actively monitored.</p>
-          <br />
-          <p style="color:#ff5555" class="glitchable"><strong>ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.</strong></p>
-          <br />
-          <p class="glitchable">Case Number: 19-482-AQ-NSA</p>
-          <p class="glitchable">Tracking Session ID: <span id="session-id">${crypto.randomUUID()}</span></p>
-          <br />
-          <p style="color: grey; font-size: 0.8rem;">This message is fictitious and part of a satirical project.</p>
-        `;
-        document.body.appendChild(seizureNotice);
-        seizureNotice.style.display = 'block';
-
-        clearInterval(flickerInterval);
-        clearInterval(textChangeInterval);
-        clearInterval(paranoiaInterval);
-        document.body.classList.remove("schizo-mode");
-
-        const jpGlitchMap = {
-          "by the Central Intelligence Agency": "中央情報局（CIA）によって",
-          "in cooperation with the National Security Agency and the Department of Justice": "国家安全保障局および司法省との協力のもと",
-          "This site has been seized as part of a federal investigation into unauthorized activities in violation of:": "このサイトは、以下の違反行為に関する連邦捜査の一環として押収されました：",
-          "Title 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)": "合衆国法典 第18編 §1030（コンピュータ詐欺および不正行為法）",
-          "Title 50 U.S.C. § 1801 et seq. (Foreign Intelligence Surveillance Act)": "合衆国法典 第50編 §1801以降（外国情報監視法）",
-          "Title 18 U.S.C. § 371 (Conspiracy to Defraud the United States)": "合衆国法典 第18編 §371（米国政府に対する共謀）",
-          "Your digital fingerprint, IP address, and access logs have been recorded.": "あなたのデジタル指紋、IPアドレス、アクセスログは記録されました。",
-          "This activity is now part of an open federal case file.": "この活動は現在、連邦捜査ファイルの一部となっています。",
-          "You are being actively monitored.": "あなたは現在、監視されています。",
-          "ANY FURTHER ACTION MAY RESULT IN LEGAL CONSEQUENCES.": "これ以上の行動は法的な結果を招く可能性があります。",
-          "Case Number: 19-482-AQ-NSA": "事件番号: 19-482-AQ-NSA",
-          "Tracking Session ID:": "追跡セッションID:"
-        };
-
-        const glitchElements = document.querySelectorAll(".seizure-notice .glitchable");
-
-        // Start glitch loop after 4-second delay
-        setTimeout(() => {
-          const glitchLoop = setInterval(() => {
-            const el = glitchElements[Math.floor(Math.random() * glitchElements.length)];
-            if (!el) return;
-
-            const original = el.textContent;
-            const translated = jpGlitchMap[original] || original;
-
-            el.textContent = translated;
-
-            setTimeout(() => {
-              el.textContent = original;
-            }, 1000 + Math.random() * 2000);
-          }, 500);
-        }, 15000); // 15-second delay before glitching starts
-      }, 10000); // 10-second delay before showing seizure notice
-    });
+  <script id="slang-entries" type="application/json">
+    [
+      {
+        "term": "Digiboksi",
+        "definition": "A set-top box.",
+        "example": "What the hell is a digiboksi?"
+      },
+      {
+        "term": "Verkkokauppa",
+        "definition": "A Finnish online store.",
+        "example": "Verkkokauppa"
+      },
+      {
+        "term": "Suur-Saitama",
+        "definition": "Saitama will be great again.",
+        "example": "I'm willing to die for Suur-Saitama."
+      },
+      {
+        "term": "シコリティ",
+        "definition": "A slang term that expresses how 'shikoi' (sexually arousing or fappable) something is...",
+        "example": "このアニメキャラのシコリティは高いね。"
+      },
+      {
+        "term": "ヨーグルト系男子",
+        "definition": "A man who is gentle and mild, akin to the qualities of yogurt.",
+        "example": "彼はヨーグルト系男子で、誰とでも優しく接する。"
+      },
+      {
+        "term": "ソーグッド",
+        "definition": "Japanized 'So good', used to express excellence. Used by Koki in all situations.",
+        "example": "このケーキ、ソーグッドだね！"
+      },
+      {
+        "term": "ポータルやろう",
+        "definition": "A pun on 'portal' and 'guy' or 'play'. Can be used in any situation.",
+        "example": "ポータルやろう"
+      },
+      {
+        "term": "お世話になっております",
+        "definition": "A formal greeting meaning 'Thank you for your continued support'.",
+        "example": "お世話になっております。先日の件についてご連絡いたします。"
+      },
+      {
+        "term": "ふにゃ",
+        "definition": "An onomatopoeia for something soft, limp, or confused.",
+        "example": "彼の握手はふにゃっとしていて力がない。"
+      },
+      {
+        "term": "こいつジャスト？",
+        "definition": "A phrase questioning if someone is JUSToing.",
+        "example": "こいつジャスト？"
+      },
+      {
+        "term": "鎖国バリアー",
+        "definition": "A VRChat 'entry test' to keep out non-Japanese speakers.",
+        "example": "I couldn't get into the world because of the 鎖国バリアー quiz at the entrance."
+      }
+    ]
   </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
